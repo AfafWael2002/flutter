@@ -2,53 +2,107 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/auth/custom_scaffold.dart';
 
 
-
-
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<HomeScreen> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<HomeScreen> {
   List<CardItem> cardItems = [];
 
   @override
   void initState() {
     super.initState();
     cardItems = [
-      CardItem(title: "JJJ", pricing: "\$10", images: 'G:\\AFAF\\flutter_application_1\\capture.jpg'),
+      CardItem(title: "t_shirt", pricing: "\$10", images: [
+        'lib/images/00.jpg',
+        'lib/images/4.jpg',
+        'lib/images/6.jpg',
+        'lib/images/8.jpg'
+      ]),
+      CardItem(title: "over_size", pricing: "\$20", images: [
+        'lib/images/5.jpg',
+        'lib/images/2.jpg',
+        'lib/images/3.jpg',
+        'lib/images/9.jpg'
+      ]),
+      CardItem(title: "gh", pricing: "\$30", images: [
+        'lib/images/6.jpg',
+        'lib/images/00.jpg',
+        'lib/images/4.jpg',
+        'lib/images/8.jpg'
+      ]),
+      CardItem(title: "mark", pricing: "\$40", images: [
+        'lib/images/7.jpg',
+        'lib/images/8.jpg',
+        'lib/images/9.jpg',
+        'lib/images/10.jpg'
+      ]),
+      CardItem(title: "T_shirt1", pricing: "\$50", images: [
+        'lib/images/3.jpg',
+        'lib/images/8.jpg',
+        'lib/images/6.jpg',
+        'lib/images/9.jpg'
+      ]),
+      CardItem(title: "T_shirt2", pricing: "\$50", images: [
+        'lib/images/8.jpg',
+        'lib/images/4.jpg',
+        'lib/images/3.jpg',
+        'lib/images/10.jpg'
+      ]),
+      CardItem(title: "T_shirt3", pricing: "\$70", images: [
+        'lib/images/9.jpg',
+        'lib/images/3.jpg',
+        'lib/images/9.jpg',
+        'lib/images/3.jpg'
+      ]),
+      CardItem(title: "T_shirt4", pricing: "\$90", images: [
+        'lib/images/10.jpg',
+        'lib/images/7.jpg',
+        'lib/images/10.jpg',
+        'lib/images/00.jpg'
+      ]),
+      CardItem(title: "T_shirt5", pricing: "\$30", images: [
+        'lib/images/4.jpg',
+        'lib/images/8.jpg',
+        'lib/images/00.jpg',
+        'lib/images/4.jpg'
+      ]),
     ];
   }
 
   @override
-  
   Widget build(BuildContext context) {
-   
     return MaterialApp(
       home: CustomScaffold(
-        
         body: SafeArea(
           child: Column(
             children: [
               Container(
                 height: 80,
                 width: MediaQuery.of(context).size.width,
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 171, 231, 210),
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 198, 246, 230),//لون الي بره 
+                  borderRadius: BorderRadius.circular(8), // إضافة حواف للحاوية
                 ),
                 child: Container(
                   margin: const EdgeInsets.all(15),
                   padding: const EdgeInsets.all(1),
-                  color: const Color.fromARGB(255, 229, 225, 231),
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 195, 227, 154),//لون الي جوه عند كلمه بحث
+                    borderRadius: BorderRadius.circular(8), // إضافة حواف للحاوية الداخلية
+                    border: Border.all(color: Colors.black), // إضافة حواف للحاوية الداخلية
+                  ),
                   child: Row(
                     children: [
                       const Expanded(
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'search',
-                            hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                            hintText: 'Search Your Item ',
+                            hintStyle:
+                                TextStyle(color: Colors.black, fontSize: 17),
                             border: InputBorder.none,
                             icon: Icon(Icons.search),
                           ),
@@ -73,15 +127,12 @@ class _MyAppState extends State<MyApp> {
             ],
           ),
         ),
-
-        showBottomNavBar: true,
+             showBottomNavBar: true,
 
 initialIndex: 0,
       ),
-
+      
     );
-
-   
   }
 
   Widget buildCard(CardItem cardItem) {
@@ -89,14 +140,31 @@ initialIndex: 0,
       child: Column(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height / 10,
+            height: MediaQuery.of(context).size.height / 4,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: 1,
               itemBuilder: (context, index) {
                 return Image.asset(
-                  cardItem.images,
+                  cardItem.images[index],
                   fit: BoxFit.cover,
+                );
+              },
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List<Widget>.generate(
+              cardItem.images.length,
+              (int circleIndex) {
+                return Padding(
+                  padding: const EdgeInsets.all(4),
+                  child: CircleAvatar(
+                    radius: 4,
+                    backgroundColor: circleIndex == cardItem.currentIndex
+                        ? Colors.blue
+                        : Colors.grey,
+                  ),
                 );
               },
             ),
@@ -108,7 +176,10 @@ initialIndex: 0,
             ),
             subtitle: Text(cardItem.pricing),
             trailing: Container(
-              decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(8)),
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(1),
+              ),
               child: const Text('premium', style: TextStyle(color: Colors.white)),
             ),
           ),
@@ -121,7 +192,13 @@ initialIndex: 0,
 class CardItem {
   final String title;
   final String pricing;
-  final String images;
+  final List<String> images;
+  int currentIndex;
 
-  CardItem({required this.title, required this.pricing, required this.images});
+  CardItem({
+    required this.title,
+    required this.pricing,
+    required this.images,
+    this.currentIndex = 0,
+  });
 }

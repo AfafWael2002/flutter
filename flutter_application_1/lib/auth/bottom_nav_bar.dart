@@ -20,6 +20,7 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   var _selectedIndex =0;
 
+  @override
   void  initState(){
     super.initState();
     _selectedIndex = widget.initialIndex;
@@ -35,7 +36,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
     switch(index){
 
-      case 0 : _navigateToRoute(context,'/home', MyApp());break;
+      case 0 : _navigateToRoute(context,'/home', HomeScreen());break;
       case 1 : _navigateToRoute(context,'/food', Food());break;
       case 2 : _navigateToRoute(context,'/myaccount', myCart());break;
       case 3 : _navigateToRoute(context,'/mycart', myAccount());break;
