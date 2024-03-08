@@ -1,13 +1,12 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/auth/LoginScreen.dart';
+import 'package:flutter_application_1/auth/Signup.dart';
 import 'package:flutter_application_1/auth/bottom_nav_bar.dart';
 
 void main()  { //add this
 
     WidgetsFlutterBinding.ensureInitialized();
-     Firebase.initializeApp();
-    runApp(  MaterialApp(home:LoginOneScreen()) );
+     // Firebase.initializeApp();
+    runApp(  MaterialApp(home:SignUp()) );
 
 }
 class HomeScreen extends StatelessWidget{
