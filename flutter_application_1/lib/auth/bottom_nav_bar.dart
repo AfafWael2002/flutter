@@ -3,6 +3,8 @@ import 'package:flutter_application_1/auth/food.dart';
 import 'package:flutter_application_1/auth/my_account.dart';
 import 'package:flutter_application_1/auth/my_cart.dart';
 import 'package:flutter_application_1/auth/Homescreen.dart';
+import 'package:flutter_application_1/auth/register_screen.dart';
+//import 'package:flutter_application_1/auth/register_screen.dart';
 
 //import 'package:flutter_application_1/main.dart';
 /*void main() {
@@ -36,10 +38,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
     switch(index){
 
-      case 0 : _navigateToRoute(context,'/home', HomeScreen());break;
-      case 1 : _navigateToRoute(context,'/food', Food());break;
-      case 2 : _navigateToRoute(context,'/myaccount', myCart());break;
-      case 3 : _navigateToRoute(context,'/mycart', myAccount());break;
+      case 0 : _navigateToRoute(context,'/home', const HomeScreen());break;
+      case 1 : _navigateToRoute(context,'/food', const Food());break;
+      case 2 : _navigateToRoute(context,'/myaccount', const myCart());break;
+      case 3 : _navigateToRoute(context,'/mycart', const myAccount());break;
+      case 4 : _navigateToRoute(context,'/Payment', RegisterScreen());break;
+
 
       
     }
@@ -99,6 +103,13 @@ else{
           color: _selectedIndex==3? Colors.green :Colors.black,
           ),
           label: 'Cart', ),
+          
+           BottomNavigationBarItem(
+        icon :Icon(
+          Icons.shopping_cart_outlined,
+          color: _selectedIndex==4? Colors.green :Colors.black,
+          ),
+          label: 'Payment', ),
           ],
     /*  title: 'Flutter SignUp Demo',
       theme: ThemeData(

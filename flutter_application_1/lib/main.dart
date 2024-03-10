@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/auth/Signup.dart';
+import 'package:flutter_application_1/auth/Food.dart';
+//import 'package:flutter_application_1/auth/Signup.dart';
 import 'package:flutter_application_1/auth/bottom_nav_bar.dart';
+//import 'package:flutter_application_1/auth/register_screen.dart';
 
 void main()  { //add this
 
     WidgetsFlutterBinding.ensureInitialized();
      // Firebase.initializeApp();
-    runApp(  MaterialApp(home:SignUp()) );
+    runApp(  const MaterialApp(home:Food()) );
 
 }
 class HomeScreen extends StatelessWidget{
